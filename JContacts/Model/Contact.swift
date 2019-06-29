@@ -16,6 +16,10 @@ struct Contact: Codable {
     let isFavorite: Bool
     let detailURL: String
     
+    public var fullName: String {
+        return "\(firstName.capitalized) \(lastName.capitalized)"
+    }
+    
     private enum CodingKeys: String, CodingKey {
         case id = "id"
         case firstName = "first_name"
