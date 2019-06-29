@@ -18,11 +18,18 @@ class HomeViewController: ViewController {
         super.viewDidLoad()
         presenter = HomePresenter(delegate: self)
         presenter.fetchContacts()
+        configureTableView()
+        configureNavigationBar()
     }
     
     private func configureTableView() {
         tableView.estimatedRowHeight = 150
         tableView.rowHeight = UITableView.automaticDimension
+        
+    }
+    
+    private func configureNavigationBar() {
+        navigationController?.navigationBar.shadowImage = UIImage()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -32,8 +39,6 @@ class HomeViewController: ViewController {
             detailVC.contact = presenter.selectedContact!
         }
     }
-
-
 }
 
 extension HomeViewController: HomePresenterDelegate {

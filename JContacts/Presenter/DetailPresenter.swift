@@ -13,7 +13,7 @@ enum DetailPresenterError: Error {
 }
 
 class DetailPresenter {
-    private var contact: Contact
+    private(set) var contact: Contact
     private weak var delegate: DetailPresenterDelegate?
     
     init(contact: Contact, delegate: DetailPresenterDelegate) {

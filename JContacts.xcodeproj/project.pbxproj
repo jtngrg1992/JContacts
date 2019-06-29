@@ -38,6 +38,11 @@
 		13AA0A4222C7C49B005265E9 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13AA0A4122C7C49B005265E9 /* GradientView.swift */; };
 		13AA0A4422C7E3A8005265E9 /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13AA0A4322C7E3A8005265E9 /* Images.swift */; };
 		13AA0A4922C7E5E8005265E9 /* System.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13AA0A4822C7E5E8005265E9 /* System.swift */; };
+		13AA0A4B22C7F4BA005265E9 /* EditContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13AA0A4A22C7F4BA005265E9 /* EditContactViewController.swift */; };
+		13AA0A4D22C804FE005265E9 /* EditContactPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13AA0A4C22C804FE005265E9 /* EditContactPresenter.swift */; };
+		13AA0A4F22C80550005265E9 /* EditPresenterDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13AA0A4E22C80550005265E9 /* EditPresenterDelegate.swift */; };
+		13AA0A5322C817EA005265E9 /* ImageUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13AA0A5222C817EA005265E9 /* ImageUploader.swift */; };
+		13AA0A5522C818B6005265E9 /* Credentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13AA0A5422C818B6005265E9 /* Credentials.swift */; };
 		30D7CB9DD6F6F0E1BAA2D9AE /* Pods_JContacts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CF7E2B117A97905605583ED /* Pods_JContacts.framework */; };
 		8866A6C30E3062853EA8B238 /* Pods_JContactsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91ACDAD2012455E8293E8932 /* Pods_JContactsTests.framework */; };
 /* End PBXBuildFile section */
@@ -88,6 +93,11 @@
 		13AA0A4122C7C49B005265E9 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		13AA0A4322C7E3A8005265E9 /* Images.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
 		13AA0A4822C7E5E8005265E9 /* System.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = System.swift; sourceTree = "<group>"; };
+		13AA0A4A22C7F4BA005265E9 /* EditContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditContactViewController.swift; sourceTree = "<group>"; };
+		13AA0A4C22C804FE005265E9 /* EditContactPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditContactPresenter.swift; sourceTree = "<group>"; };
+		13AA0A4E22C80550005265E9 /* EditPresenterDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPresenterDelegate.swift; sourceTree = "<group>"; };
+		13AA0A5222C817EA005265E9 /* ImageUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUploader.swift; sourceTree = "<group>"; };
+		13AA0A5422C818B6005265E9 /* Credentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Credentials.swift; sourceTree = "<group>"; };
 		1CF7E2B117A97905605583ED /* Pods_JContacts.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JContacts.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D01B6BEE66632F93C365036 /* Pods-JContacts.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JContacts.release.xcconfig"; path = "Target Support Files/Pods-JContacts/Pods-JContacts.release.xcconfig"; sourceTree = "<group>"; };
 		91ACDAD2012455E8293E8932 /* Pods_JContactsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JContactsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -181,6 +191,7 @@
 				13AA0A1722C76011005265E9 /* Colors.swift */,
 				13AA0A3F22C7AD45005265E9 /* SegueHandler.swift */,
 				13AA0A4322C7E3A8005265E9 /* Images.swift */,
+				13AA0A5422C818B6005265E9 /* Credentials.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -215,6 +226,7 @@
 				13AA0A3522C796E2005265E9 /* ContactListSectionHeader.swift */,
 				13AA0A3B22C7ABC7005265E9 /* DetailViewController.swift */,
 				13AA0A4122C7C49B005265E9 /* GradientView.swift */,
+				13AA0A4A22C7F4BA005265E9 /* EditContactViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -227,6 +239,8 @@
 				13AA0A2522C773C8005265E9 /* HomePresenter.swift */,
 				13AA0A3922C7A3A5005265E9 /* DetailPresenter.swift */,
 				13AA0A3D22C7ABF2005265E9 /* DetailPresenterDelegate.swift */,
+				13AA0A4C22C804FE005265E9 /* EditContactPresenter.swift */,
+				13AA0A4E22C80550005265E9 /* EditPresenterDelegate.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -235,6 +249,7 @@
 			isa = PBXGroup;
 			children = (
 				13AA0A4822C7E5E8005265E9 /* System.swift */,
+				13AA0A5222C817EA005265E9 /* ImageUploader.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -390,12 +405,16 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-JContacts/Pods-JContacts-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Cloudinary/Cloudinary.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cloudinary.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -437,6 +456,7 @@
 				13AA0A4922C7E5E8005265E9 /* System.swift in Sources */,
 				13AA0A1B22C76074005265E9 /* UIColor.swift in Sources */,
 				13AA0A3A22C7A3A5005265E9 /* DetailPresenter.swift in Sources */,
+				13AA0A4B22C7F4BA005265E9 /* EditContactViewController.swift in Sources */,
 				13AA0A3622C796E2005265E9 /* ContactListSectionHeader.swift in Sources */,
 				13AA0A2622C773C8005265E9 /* HomePresenter.swift in Sources */,
 				13AA0A3C22C7ABC7005265E9 /* DetailViewController.swift in Sources */,
@@ -446,16 +466,20 @@
 				13AA0A2E22C78450005265E9 /* ViewController.swift in Sources */,
 				13AA0A2322C772F7005265E9 /* HomePresenterDelegate.swift in Sources */,
 				13AA0A1822C76011005265E9 /* Colors.swift in Sources */,
+				13AA0A4D22C804FE005265E9 /* EditContactPresenter.swift in Sources */,
 				13AA0A1E22C765DF005265E9 /* ContactItemCell.swift in Sources */,
+				13AA0A5322C817EA005265E9 /* ImageUploader.swift in Sources */,
 				13AA0A4222C7C49B005265E9 /* GradientView.swift in Sources */,
 				13AA0A3022C7848A005265E9 /* LoadingView.swift in Sources */,
 				13AA0A2422C7735E005265E9 /* Contact.swift in Sources */,
 				13AA0A2A22C778A7005265E9 /* HomeViewModel.swift in Sources */,
 				13AA0A3222C78C10005265E9 /* LoaderPosition.swift in Sources */,
 				13AA0A0A22C752AB005265E9 /* Router.swift in Sources */,
+				13AA0A5522C818B6005265E9 /* Credentials.swift in Sources */,
 				13AA0A3E22C7ABF2005265E9 /* DetailPresenterDelegate.swift in Sources */,
 				13AA0A0F22C7549E005265E9 /* Strings.swift in Sources */,
 				13AA0A4422C7E3A8005265E9 /* Images.swift in Sources */,
+				13AA0A4F22C80550005265E9 /* EditPresenterDelegate.swift in Sources */,
 				13AA0A0C22C75394005265E9 /* NetworkService.swift in Sources */,
 				13AA09E922C7507D005265E9 /* AppDelegate.swift in Sources */,
 			);
@@ -622,6 +646,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = JFWFW8M2VK;
 				INFOPLIST_FILE = JContacts/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -641,6 +666,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = JFWFW8M2VK;
 				INFOPLIST_FILE = JContacts/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = (

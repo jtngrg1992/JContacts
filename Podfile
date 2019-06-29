@@ -7,6 +7,7 @@ target 'JContacts' do
 
   # Pods for JContacts
 	pod 'SDWebImage'
+pod 'Cloudinary'
   target 'JContactsTests' do
     inherit! :search_paths
     # Pods for testing

@@ -59,7 +59,22 @@ class DetailViewController: ViewController {
     }
     
     @objc func editItemTapped(_ sender: UIBarButtonItem) {
-        
+        performSegue(withIdentifier: ViewControllerSegue.showContactEdit.rawValue, sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let identifierCase = segueIdentifierCase(for: segue)
+        if (identifierCase == .showContactEdit) {
+            guard
+                let destinationNavigator = segue.destination as? UINavigationController,
+                let editContactVC = destinationNavigator.viewControllers.first as? EditContactViewController
+                else {
+                    return
+            }
+            
+            let editContactPresenter = EditContactPresenter(contact: presenter.contact, delegate: editContactVC)
+            editContactVC.presenter = editContactPresenter
+        }
     }
 }
 
@@ -94,16 +109,8 @@ extension DetailViewController: DetailPresenterDelegate {
     }
 }
 
-extension DetailViewController: UIScrollViewDelegate {
-//    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-//        previousOffset = scrollView.contentOffset.y
-//    }
-//
-//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-//        let verticalScrollOffset = scrollView.contentOffset.y
-//        let delta = verticalScrollOffset - previousOffset
-//        previousOffset = verticalScrollOffset
-//        parallaxHeaderHeight.constant -= delta
-//        //view.layoutIfNeeded()
-//    }
+extension DetailViewController: SegueHandler {
+    enum ViewControllerSegue: String {
+        case showContactEdit = "showEdit"
+    }
 }
