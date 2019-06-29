@@ -55,7 +55,7 @@ class ViewController: UIViewController {
             targetLoader?.alpha = 1
         }
         
-        loaderMap[.page] = targetLoader
+        loaderMap[position] = targetLoader
     
     }
     

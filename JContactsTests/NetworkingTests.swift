@@ -38,6 +38,26 @@ class NetworkingTests: XCTestCase {
         }
     }
 
+    func testContactDetailFetching() {
+        let testContactID = 6415
+        let router = Router.getContactDetail(testContactID)
+        let detailExpectation = expectation(description: "Contact Details")
+        var details: ContactDetail?
+        
+        NetworkService<ContactDetail>.request(router: router) { result in
+            switch result {
+            case .success(let detail):
+                details = detail
+                detailExpectation.fulfill()
+            default: break
+                
+            }
+        }
+        waitForExpectations(timeout: 10) { (error) in
+            XCTAssertNotNil(details)
+        }
+        
+    }
     
 
 }

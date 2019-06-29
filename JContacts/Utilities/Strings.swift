@@ -13,6 +13,7 @@ struct Strings {
     static let URL_CONSTRUCTION_FAILURE = "Failed to construct the url using supplied configuration"
     static let UNABLE_TO_TYPECASE_URL_RESPONSE = #"Failed to typecast variable of type "URLResponse" to "HTTPURLResponse"#
     static let INVALID_CONTACT_INDICES = "Unable to locate the requested contact information"
+    static let DETAIL_EDIT_ACTION = "Edit"
     static func UNKNOWN_STATUS_CODE(_ code: Int) -> String {
         return "Unknown status code: \(code)"
     }

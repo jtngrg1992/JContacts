@@ -15,6 +15,7 @@ struct Contact: Codable {
     let avatar: String
     let isFavorite: Bool
     let detailURL: String
+    var details: ContactDetail?
     
     public var fullName: String {
         return "\(firstName.capitalized) \(lastName.capitalized)"

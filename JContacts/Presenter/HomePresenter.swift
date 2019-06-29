@@ -18,6 +18,8 @@ class HomePresenter {
     
     private var viewModel: HomeViewModel?
     
+    public var selectedContact: Contact?
+    
     init( delegate: HomePresenterDelegate) {
         self.delegate = delegate
     }
@@ -35,7 +37,7 @@ class HomePresenter {
                 case .success (let contactList):
                     //sort the contact list according to first names
                     self.contactsList = contactList.sorted { $0.firstName.localizedCaseInsensitiveCompare($1.firstName) == ComparisonResult.orderedAscending}
-                    self.delegate?.displayContacts(contactList)
+                    self.delegate?.displayContacts()
                 case .failure(let error):
                     self.delegate?.displayError(error)
                 }
@@ -80,6 +82,25 @@ class HomePresenter {
             fatalError(Strings.INVALID_CONTACT_INDICES)
         }
         return viewModel.sections[index].sectionTitle
+    }
+    
+    public func processRowSelection(atIndexPath indexPath: IndexPath) {
+        /*
+            finds out the contact item that was clicked and notifies
+            delete to take appropriate action
+         */
+        
+        guard
+            let `viewModel` = viewModel,
+            viewModel.sections.indices.contains(indexPath.section),
+            viewModel.sections[indexPath.section].sectionChildren.indices.contains(indexPath.row)
+            else{
+                fatalError(Strings.INVALID_CONTACT_INDICES)
+        }
+        
+        selectedContact = viewModel.sections[indexPath.section].sectionChildren[indexPath.row]
+        delegate?.displayDetails(forContact: selectedContact!)
+        
     }
     
 }

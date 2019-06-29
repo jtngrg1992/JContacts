@@ -24,7 +24,7 @@ class ContactItemCell: UITableViewCell {
     }
     
     private func loadDetails(forContact contact: Contact) {
-        avatarImageView.sd_setImage(with: URL(string: contact.avatar), placeholderImage: UIImage(named: "placeholder_photo"))
+        avatarImageView.sd_setImage(with: URL(string: contact.avatar), placeholderImage: Images.avatarPlaceholder.equivalentImage)
         nameLabel.text = contact.fullName
         favoriteMarker.isHidden = !contact.isFavorite
         

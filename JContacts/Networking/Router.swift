@@ -11,6 +11,7 @@ import Foundation
 
 enum Router {
     case getContacts
+    case getContactDetail(Int)
     
     var scheme: String {
         return "https"
@@ -24,19 +25,21 @@ enum Router {
         switch self {
         case .getContacts:
             return "/contacts.json"
+        case .getContactDetail(let contactID):
+            return "/contacts/\(contactID).json"
         }
     }
     
     var parameters: [URLQueryItem] {
         switch self {
-        case .getContacts:
+        case .getContacts, .getContactDetail(_ ):
             return []
         }
     }
     
     var method: String {
         switch self {
-        case .getContacts:
+        case .getContacts, .getContactDetail(_ ):
             return "GET"
         }
     }

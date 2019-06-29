@@ -24,12 +24,24 @@ class HomeViewController: ViewController {
         tableView.estimatedRowHeight = 150
         tableView.rowHeight = UITableView.automaticDimension
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segueIdentifierCase(for: segue) {
+        case .showContactDetail:
+            let detailVC = segue.destination as! DetailViewController
+            detailVC.contact = presenter.selectedContact!
+        }
+    }
 
 
 }
 
 extension HomeViewController: HomePresenterDelegate {
-    func displayContacts(_ contact: [Contact]) {
+    func displayDetails(forContact contact: Contact) {
+        performSegue(withIdentifier: ViewControllerSegue.showContactDetail.rawValue, sender: self)
+    }
+    
+    func displayContacts() {
         tableView.reloadData()
     }
     
@@ -73,8 +85,9 @@ extension HomeViewController: UITableViewDataSource {
 
 extension HomeViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        presenter.processRowSelection(atIndexPath: indexPath)
     }
+    
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 40
     }
@@ -84,6 +97,12 @@ extension HomeViewController: UITableViewDelegate {
         sectionHeader.title = presenter.title(forSectionAtIndex: section).uppercased()
         sectionHeader.backgroundColor = Colors.DarkerBackground
         return sectionHeader
+    }
+}
+
+extension HomeViewController: SegueHandler {
+    enum ViewControllerSegue: String {
+        case showContactDetail
     }
 }
 

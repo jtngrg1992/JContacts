@@ -30,6 +30,14 @@
 		13AA0A3222C78C10005265E9 /* LoaderPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13AA0A3122C78C10005265E9 /* LoaderPosition.swift */; };
 		13AA0A3422C78D44005265E9 /* InitialsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13AA0A3322C78D44005265E9 /* InitialsView.swift */; };
 		13AA0A3622C796E2005265E9 /* ContactListSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13AA0A3522C796E2005265E9 /* ContactListSectionHeader.swift */; };
+		13AA0A3822C79FE5005265E9 /* ContactDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13AA0A3722C79FE5005265E9 /* ContactDetail.swift */; };
+		13AA0A3A22C7A3A5005265E9 /* DetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13AA0A3922C7A3A5005265E9 /* DetailPresenter.swift */; };
+		13AA0A3C22C7ABC7005265E9 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13AA0A3B22C7ABC7005265E9 /* DetailViewController.swift */; };
+		13AA0A3E22C7ABF2005265E9 /* DetailPresenterDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13AA0A3D22C7ABF2005265E9 /* DetailPresenterDelegate.swift */; };
+		13AA0A4022C7AD45005265E9 /* SegueHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13AA0A3F22C7AD45005265E9 /* SegueHandler.swift */; };
+		13AA0A4222C7C49B005265E9 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13AA0A4122C7C49B005265E9 /* GradientView.swift */; };
+		13AA0A4422C7E3A8005265E9 /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13AA0A4322C7E3A8005265E9 /* Images.swift */; };
+		13AA0A4922C7E5E8005265E9 /* System.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13AA0A4822C7E5E8005265E9 /* System.swift */; };
 		30D7CB9DD6F6F0E1BAA2D9AE /* Pods_JContacts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CF7E2B117A97905605583ED /* Pods_JContacts.framework */; };
 		8866A6C30E3062853EA8B238 /* Pods_JContactsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91ACDAD2012455E8293E8932 /* Pods_JContactsTests.framework */; };
 /* End PBXBuildFile section */
@@ -72,6 +80,14 @@
 		13AA0A3122C78C10005265E9 /* LoaderPosition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderPosition.swift; sourceTree = "<group>"; };
 		13AA0A3322C78D44005265E9 /* InitialsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialsView.swift; sourceTree = "<group>"; };
 		13AA0A3522C796E2005265E9 /* ContactListSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactListSectionHeader.swift; sourceTree = "<group>"; };
+		13AA0A3722C79FE5005265E9 /* ContactDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDetail.swift; sourceTree = "<group>"; };
+		13AA0A3922C7A3A5005265E9 /* DetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPresenter.swift; sourceTree = "<group>"; };
+		13AA0A3B22C7ABC7005265E9 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		13AA0A3D22C7ABF2005265E9 /* DetailPresenterDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPresenterDelegate.swift; sourceTree = "<group>"; };
+		13AA0A3F22C7AD45005265E9 /* SegueHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegueHandler.swift; sourceTree = "<group>"; };
+		13AA0A4122C7C49B005265E9 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
+		13AA0A4322C7E3A8005265E9 /* Images.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
+		13AA0A4822C7E5E8005265E9 /* System.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = System.swift; sourceTree = "<group>"; };
 		1CF7E2B117A97905605583ED /* Pods_JContacts.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JContacts.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D01B6BEE66632F93C365036 /* Pods-JContacts.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JContacts.release.xcconfig"; path = "Target Support Files/Pods-JContacts/Pods-JContacts.release.xcconfig"; sourceTree = "<group>"; };
 		91ACDAD2012455E8293E8932 /* Pods_JContactsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JContactsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -123,6 +139,7 @@
 		13AA09E722C7507D005265E9 /* JContacts */ = {
 			isa = PBXGroup;
 			children = (
+				13AA0A4722C7E5DE005265E9 /* Service */,
 				13AA0A1222C75935005265E9 /* Model */,
 				13AA0A1F22C767B0005265E9 /* Presenter */,
 				13AA0A1C22C765C7005265E9 /* View */,
@@ -162,6 +179,8 @@
 			children = (
 				13AA0A0E22C7549E005265E9 /* Strings.swift */,
 				13AA0A1722C76011005265E9 /* Colors.swift */,
+				13AA0A3F22C7AD45005265E9 /* SegueHandler.swift */,
+				13AA0A4322C7E3A8005265E9 /* Images.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -172,6 +191,7 @@
 				13AA0A1322C75943005265E9 /* Contact.swift */,
 				13AA0A2922C778A7005265E9 /* HomeViewModel.swift */,
 				13AA0A3122C78C10005265E9 /* LoaderPosition.swift */,
+				13AA0A3722C79FE5005265E9 /* ContactDetail.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -193,6 +213,8 @@
 				13AA0A2F22C7848A005265E9 /* LoadingView.swift */,
 				13AA0A3322C78D44005265E9 /* InitialsView.swift */,
 				13AA0A3522C796E2005265E9 /* ContactListSectionHeader.swift */,
+				13AA0A3B22C7ABC7005265E9 /* DetailViewController.swift */,
+				13AA0A4122C7C49B005265E9 /* GradientView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -203,8 +225,18 @@
 				13AA0A2022C767CC005265E9 /* ViewPresenterDelegate.swift */,
 				13AA0A2222C772F7005265E9 /* HomePresenterDelegate.swift */,
 				13AA0A2522C773C8005265E9 /* HomePresenter.swift */,
+				13AA0A3922C7A3A5005265E9 /* DetailPresenter.swift */,
+				13AA0A3D22C7ABF2005265E9 /* DetailPresenterDelegate.swift */,
 			);
 			path = Presenter;
+			sourceTree = "<group>";
+		};
+		13AA0A4722C7E5DE005265E9 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				13AA0A4822C7E5E8005265E9 /* System.swift */,
+			);
+			path = Service;
 			sourceTree = "<group>";
 		};
 		6A9A153F0194967813BC857A /* Pods */ = {
@@ -402,20 +434,28 @@
 			files = (
 				13AA0A2122C767CC005265E9 /* ViewPresenterDelegate.swift in Sources */,
 				13AA09EB22C7507D005265E9 /* HomeViewController.swift in Sources */,
+				13AA0A4922C7E5E8005265E9 /* System.swift in Sources */,
 				13AA0A1B22C76074005265E9 /* UIColor.swift in Sources */,
+				13AA0A3A22C7A3A5005265E9 /* DetailPresenter.swift in Sources */,
 				13AA0A3622C796E2005265E9 /* ContactListSectionHeader.swift in Sources */,
 				13AA0A2622C773C8005265E9 /* HomePresenter.swift in Sources */,
+				13AA0A3C22C7ABC7005265E9 /* DetailViewController.swift in Sources */,
+				13AA0A3822C79FE5005265E9 /* ContactDetail.swift in Sources */,
+				13AA0A4022C7AD45005265E9 /* SegueHandler.swift in Sources */,
 				13AA0A3422C78D44005265E9 /* InitialsView.swift in Sources */,
 				13AA0A2E22C78450005265E9 /* ViewController.swift in Sources */,
 				13AA0A2322C772F7005265E9 /* HomePresenterDelegate.swift in Sources */,
 				13AA0A1822C76011005265E9 /* Colors.swift in Sources */,
 				13AA0A1E22C765DF005265E9 /* ContactItemCell.swift in Sources */,
+				13AA0A4222C7C49B005265E9 /* GradientView.swift in Sources */,
 				13AA0A3022C7848A005265E9 /* LoadingView.swift in Sources */,
 				13AA0A2422C7735E005265E9 /* Contact.swift in Sources */,
 				13AA0A2A22C778A7005265E9 /* HomeViewModel.swift in Sources */,
 				13AA0A3222C78C10005265E9 /* LoaderPosition.swift in Sources */,
 				13AA0A0A22C752AB005265E9 /* Router.swift in Sources */,
+				13AA0A3E22C7ABF2005265E9 /* DetailPresenterDelegate.swift in Sources */,
 				13AA0A0F22C7549E005265E9 /* Strings.swift in Sources */,
+				13AA0A4422C7E3A8005265E9 /* Images.swift in Sources */,
 				13AA0A0C22C75394005265E9 /* NetworkService.swift in Sources */,
 				13AA09E922C7507D005265E9 /* AppDelegate.swift in Sources */,
 			);

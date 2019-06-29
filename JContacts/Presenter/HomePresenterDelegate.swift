@@ -9,6 +9,6 @@
 import Foundation
 
 protocol HomePresenterDelegate: ViewPresenterDelegate {
-    func displayContacts(_ contact: [Contact])
-    
+    func displayContacts()
+    func displayDetails(forContact contact: Contact)
 }
