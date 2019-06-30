@@ -123,4 +123,22 @@ class HomePresenter {
         
     }
     
+    public func processAlphabetTap(_ alphabet: String) {
+        /*
+            1. find out the index of the section that starts with this alphabet.
+            2. Instruct delegate to scroll to the first row of that section.
+         */
+        
+        guard
+            let `viewModel` = viewModel,
+            let sectionIndex = viewModel.index(ofSectionStartingWith: alphabet)
+        else {
+            return
+        }
+        
+        
+        let indexPath = IndexPath(row: 0, section: sectionIndex)
+        delegate?.scroll(toRowAtIndexPath: indexPath)
+    }
+    
 }

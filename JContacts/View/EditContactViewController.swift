@@ -38,6 +38,7 @@ class EditContactViewController: ViewController {
         super.viewDidLoad()
         configureNavigationBar()
         configureImagePicker()
+        configureScrollView()
         presenter.getContact()
     }
     
@@ -47,6 +48,7 @@ class EditContactViewController: ViewController {
     }
     
     @IBAction func cancelTapped(_ sender: Any) {
+        view.endEditing(true)
         dismiss(animated: true)
     }
     
@@ -62,6 +64,16 @@ class EditContactViewController: ViewController {
     private func configureImagePicker() {
         imagePicker.delegate = self
         imagePicker.allowsEditing = false
+    }
+    
+    private func configureScrollView() {
+        let tapgesture = UITapGestureRecognizer(target: self, action: #selector(scrollViewTapped))
+        tapgesture.cancelsTouchesInView = false
+        scrollView.addGestureRecognizer(tapgesture)
+    }
+    
+    @objc func scrollViewTapped(_ gesture: UITapGestureRecognizer) {
+        view.endEditing(true)
     }
     
     private func openCamera() {
@@ -99,7 +111,7 @@ class EditContactViewController: ViewController {
         
         presenter.saveContactInformation()
     }
-    
+
 }
 
 //MARK :- Conformance necessary for operation of image picker

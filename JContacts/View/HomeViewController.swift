@@ -10,7 +10,7 @@ import UIKit
 
 class HomeViewController: ViewController {
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var initialsContainer: UIView!
+    @IBOutlet weak var initialsContainer: InitialsView!
     
     private var presenter: HomePresenter!
     
@@ -20,6 +20,7 @@ class HomeViewController: ViewController {
         presenter.fetchContacts()
         configureTableView()
         configureNavigationBar()
+        configureInitialsView()
     }
     
     private func configureTableView() {
@@ -32,6 +33,10 @@ class HomeViewController: ViewController {
         navigationController?.navigationBar.shadowImage = UIImage()
     }
     
+    private func configureInitialsView() {
+        initialsContainer.delegate = self
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segueIdentifierCase(for: segue) {
         case .showContactDetail:
@@ -42,12 +47,20 @@ class HomeViewController: ViewController {
 }
 
 extension HomeViewController: HomePresenterDelegate {
+    func scroll(toRowAtIndexPath indexPath: IndexPath) {
+        tableView.scrollToRow(at: indexPath,
+                              at: .top,
+                              animated: true)
+    }
+    
     func reloadRow(atIndexPath indexPath: IndexPath) {
-        tableView.reloadRows(at: [indexPath], with: .automatic)
+        tableView.reloadRows(at: [indexPath],
+                             with: .automatic)
     }
     
     func displayDetails(forContact contact: Contact) {
-        performSegue(withIdentifier: ViewControllerSegue.showContactDetail.rawValue, sender: self)
+        performSegue(withIdentifier: ViewControllerSegue.showContactDetail.rawValue,
+                     sender: self)
     }
     
     func displayContacts() {
@@ -113,6 +126,13 @@ extension HomeViewController: UITableViewDelegate {
 extension HomeViewController: SegueHandler {
     enum ViewControllerSegue: String {
         case showContactDetail
+    }
+}
+
+extension HomeViewController: InitialsViewDelegate {
+    func didSelect(aCharacter char: Character) {
+        let str = String(char)
+        presenter.processAlphabetTap(str)
     }
 }
 

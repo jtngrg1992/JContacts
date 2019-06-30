@@ -18,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="88s-3b-olf">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="88s-3b-olf">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
@@ -123,7 +123,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" delaysContentTouches="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rNH-SK-QH2">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" showsVerticalScrollIndicator="NO" delaysContentTouches="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rNH-SK-QH2">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="774"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XKs-mh-Asb" customClass="GradientView" customModule="JContacts" customModuleProvider="target">
@@ -391,7 +391,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" delaysContentTouches="NO" keyboardDismissMode="interactive" translatesAutoresizingMaskIntoConstraints="NO" id="Brl-6r-ivh">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" delaysContentTouches="NO" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="Brl-6r-ivh">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ALQ-bo-pqP" customClass="GradientView" customModule="JContacts" customModuleProvider="target">
@@ -427,7 +427,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cAo-eQ-0JU">
-                                                <rect key="frame" x="231" y="119" width="41" height="41"/>
+                                                <rect key="frame" x="231" y="119" width="16" height="22"/>
                                                 <state key="normal" image="camera_button"/>
                                                 <connections>
                                                     <action selector="cameraButtonTapped:" destination="btT-wB-c0U" eventType="touchUpInside" id="1oA-pv-Q4V"/>
@@ -540,7 +540,7 @@
                                                         </constraints>
                                                         <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                        <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                                                        <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="next"/>
                                                         <connections>
                                                             <outlet property="delegate" destination="btT-wB-c0U" id="47u-Xh-8kz"/>
                                                         </connections>
@@ -579,7 +579,7 @@
                                                         </constraints>
                                                         <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                        <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                                        <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="done"/>
                                                         <connections>
                                                             <outlet property="delegate" destination="btT-wB-c0U" id="eZk-lV-ks7"/>
                                                         </connections>
@@ -634,7 +634,7 @@
                                     <constraint firstItem="KLB-a6-CY9" firstAttribute="trailing" secondItem="ALQ-bo-pqP" secondAttribute="trailing" id="CBx-I0-91f"/>
                                     <constraint firstItem="ALQ-bo-pqP" firstAttribute="top" secondItem="Brl-6r-ivh" secondAttribute="top" id="Tcc-UT-sfA"/>
                                     <constraint firstItem="KLB-a6-CY9" firstAttribute="leading" secondItem="ALQ-bo-pqP" secondAttribute="leading" id="b9W-md-zEh"/>
-                                    <constraint firstAttribute="bottom" secondItem="KLB-a6-CY9" secondAttribute="bottom" constant="83" id="reE-K1-biX"/>
+                                    <constraint firstAttribute="bottom" secondItem="KLB-a6-CY9" secondAttribute="bottom" id="reE-K1-biX"/>
                                 </constraints>
                             </scrollView>
                         </subviews>

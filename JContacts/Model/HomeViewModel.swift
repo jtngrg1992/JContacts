@@ -44,6 +44,13 @@ struct HomeViewModel {
         return (section: sectionIndex!, row: rowIndex!)
     }
     
+    public func index(ofSectionStartingWith str: String) -> Int? {
+        let sectionIndex = sections.firstIndex(where: {
+            $0.sectionTitle.caseInsensitiveCompare(str) == ComparisonResult.orderedSame
+        })
+        return sectionIndex
+    }
+    
 }
 
 struct HomeSectionModel {

@@ -8,7 +8,12 @@
 
 import UIKit
 
+protocol InitialsViewDelegate: class {
+    func didSelect(aCharacter char: Character)
+}
+
 class InitialsView: UIView {
+    public weak var delegate: InitialsViewDelegate?
     private let alphabets = "abcdefghijklmnopqrstuvwxyz"
     private var newButtonInstance: UIButton {
         let l = UIButton(type: .system)
@@ -71,6 +76,15 @@ class InitialsView: UIView {
     @objc func alphabetTapped(_ sender: UIButton) {
         let index = sender.tag
         let tappedAlphabet = alphabets[alphabets.index(alphabets.startIndex, offsetBy: index)]
-        //todo: Call delegate to manipulate the UI
+        delegate?.didSelect(aCharacter: tappedAlphabet)
+        
+        //find out the relevant button and switch to new tint
+        initialLabels.forEach {
+            guard let title = $0.title(for: .normal) else { return }
+            $0.tintColor = title.lowercased() == String(tappedAlphabet.lowercased()) ? Colors.PrimaryColor : .gray
+        }
+        
+        
+        
     }
 }
