@@ -9,6 +9,11 @@
 import Foundation
 
 protocol EditPresenterDelegate: ViewPresenterDelegate {
+    var pickedImageData: Data? { get set }
+    var editedFirstName: String? { get set }
+    var editedLastName: String?{ get set }
+    var editedEmail: String? { get set }
+    var editedPhoneNumber: String? { get set }
     func displayContact()
     func displayPictureOptions()
 }

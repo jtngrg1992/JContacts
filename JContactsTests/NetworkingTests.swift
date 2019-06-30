@@ -56,7 +56,6 @@ class NetworkingTests: XCTestCase {
         waitForExpectations(timeout: 10) { (error) in
             XCTAssertNotNil(details)
         }
-        
     }
     
 

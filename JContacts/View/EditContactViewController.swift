@@ -22,6 +22,12 @@ class EditContactViewController: ViewController {
     private var pickedImage: UIImage?
     private let imagePicker = UIImagePickerController()
     
+    var pickedImageData: Data?
+    var editedFirstName: String?
+    var editedLastName: String?
+    var editedEmail: String?
+    var editedPhoneNumber: String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureNavigationBar()
@@ -75,29 +81,13 @@ class EditContactViewController: ViewController {
              user has at least chosen a new image for this contact,
              upload it somewhere and store the url
              */
-            presenter.setImage(data: imageData)
+            pickedImageData = imageData
         }
         
-        let newFirstName = firstNameField.text ?? ""
-        let newLastName = lastNameField.text ?? ""
-        let newMobile = mobileField.text ?? ""
-        let newEmail = emailField.text ?? ""
-        
-        presenter.setNewContactInformation( Contact(id: 0,
-                                           firstName: newFirstName,
-                                           lastName: newLastName,
-                                           avatar: presenter.contact?.avatar ?? "",
-                                           isFavorite: presenter.contact?.isFavorite ?? false,
-                                           detailURL: presenter.contact?.detailURL ?? "",
-                                           details: ContactDetail(email: newEmail,
-                                                                  phoneNumber: newMobile,
-                                                                  creationDate: presenter.contact?.details?.creationDate ?? "",
-                                                                  modificationDate: presenter.contact?.details?.modificationDate ?? "")))
-        
-        //information set, leave it upto presenter to do its magic
-        
-        
-        
+        editedFirstName = firstNameField.text ?? ""
+        editedLastName = lastNameField.text ?? ""
+        editedPhoneNumber = mobileField.text ?? ""
+        editedEmail = emailField.text ?? ""
     }
     
 }
@@ -125,6 +115,8 @@ UINavigationControllerDelegate {
 
 //MARK :- Presenter delegates
 extension EditContactViewController: EditPresenterDelegate {
+    
+    
     func displayContact() {
         guard let contact = presenter.contact else {
             return

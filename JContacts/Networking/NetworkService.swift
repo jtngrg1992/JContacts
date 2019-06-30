@@ -28,6 +28,16 @@ class NetworkService<T: Codable> {
         var request = URLRequest(url: url)
         request.httpMethod = router.method
         
+        if let body = router.httpBody {
+            do {
+                let jsonData = try JSONSerialization.data(withJSONObject: body, options: [])
+                request.httpBody = jsonData
+            }catch (let error) {
+                completion(.failure(.other(error.localizedDescription)))
+                return
+            }
+        }
+        
         let session = URLSession(configuration: .default)
         let task = session.dataTask(with: request) { (responseData, response, error) in
             guard error == nil else {

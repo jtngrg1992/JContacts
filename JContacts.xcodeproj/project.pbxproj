@@ -43,6 +43,7 @@
 		13AA0A4F22C80550005265E9 /* EditPresenterDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13AA0A4E22C80550005265E9 /* EditPresenterDelegate.swift */; };
 		13AA0A5322C817EA005265E9 /* ImageUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13AA0A5222C817EA005265E9 /* ImageUploader.swift */; };
 		13AA0A5522C818B6005265E9 /* Credentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13AA0A5422C818B6005265E9 /* Credentials.swift */; };
+		13AA0A5722C8AB9E005265E9 /* ContactUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13AA0A5622C8AB9E005265E9 /* ContactUpdater.swift */; };
 		30D7CB9DD6F6F0E1BAA2D9AE /* Pods_JContacts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CF7E2B117A97905605583ED /* Pods_JContacts.framework */; };
 		8866A6C30E3062853EA8B238 /* Pods_JContactsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91ACDAD2012455E8293E8932 /* Pods_JContactsTests.framework */; };
 /* End PBXBuildFile section */
@@ -98,6 +99,7 @@
 		13AA0A4E22C80550005265E9 /* EditPresenterDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPresenterDelegate.swift; sourceTree = "<group>"; };
 		13AA0A5222C817EA005265E9 /* ImageUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUploader.swift; sourceTree = "<group>"; };
 		13AA0A5422C818B6005265E9 /* Credentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Credentials.swift; sourceTree = "<group>"; };
+		13AA0A5622C8AB9E005265E9 /* ContactUpdater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactUpdater.swift; sourceTree = "<group>"; };
 		1CF7E2B117A97905605583ED /* Pods_JContacts.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JContacts.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D01B6BEE66632F93C365036 /* Pods-JContacts.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JContacts.release.xcconfig"; path = "Target Support Files/Pods-JContacts/Pods-JContacts.release.xcconfig"; sourceTree = "<group>"; };
 		91ACDAD2012455E8293E8932 /* Pods_JContactsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JContactsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -250,6 +252,7 @@
 			children = (
 				13AA0A4822C7E5E8005265E9 /* System.swift */,
 				13AA0A5222C817EA005265E9 /* ImageUploader.swift */,
+				13AA0A5622C8AB9E005265E9 /* ContactUpdater.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -467,6 +470,7 @@
 				13AA0A2322C772F7005265E9 /* HomePresenterDelegate.swift in Sources */,
 				13AA0A1822C76011005265E9 /* Colors.swift in Sources */,
 				13AA0A4D22C804FE005265E9 /* EditContactPresenter.swift in Sources */,
+				13AA0A5722C8AB9E005265E9 /* ContactUpdater.swift in Sources */,
 				13AA0A1E22C765DF005265E9 /* ContactItemCell.swift in Sources */,
 				13AA0A5322C817EA005265E9 /* ImageUploader.swift in Sources */,
 				13AA0A4222C7C49B005265E9 /* GradientView.swift in Sources */,
