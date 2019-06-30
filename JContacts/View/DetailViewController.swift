@@ -19,7 +19,7 @@ class DetailViewController: ViewController {
     @IBOutlet weak var emailButton: UIButton!
     @IBOutlet weak var favoriteButton: UIButton!
     
-    private var previousOffset: CGFloat = 0
+    private var editNavigationItem: UIBarButtonItem?
     
     public var contact: Contact! {
         didSet{
@@ -36,6 +36,7 @@ class DetailViewController: ViewController {
         addEditNavigationItem()
     }
     
+    
     @IBAction func headerActionButtonTapped(_ sender: UIButton) {
         switch sender {
         case messageButton:
@@ -45,6 +46,7 @@ class DetailViewController: ViewController {
         case emailButton:
             presenter.sendEmail()
         case favoriteButton:
+            presenter.toggleFavoriteStatus()
             break
         default:
             break
@@ -53,8 +55,11 @@ class DetailViewController: ViewController {
     
     
     private func addEditNavigationItem() {
-        let editItem = UIBarButtonItem(title: Strings.DETAIL_EDIT_ACTION, style: .plain, target: self, action: #selector(editItemTapped))
-        navigationItem.rightBarButtonItem = editItem
+        editNavigationItem = UIBarButtonItem(title: Strings.DETAIL_EDIT_ACTION,
+                                       style: .plain,
+                                       target: self,
+                                       action: #selector(editItemTapped))
+        navigationItem.rightBarButtonItem = editNavigationItem!
         
     }
     
@@ -72,7 +77,8 @@ class DetailViewController: ViewController {
                     return
             }
             
-            let editContactPresenter = EditContactPresenter(contact: presenter.contact, delegate: editContactVC)
+            let editContactPresenter = EditContactPresenter(contact: presenter.contact,
+                                                            delegate: editContactVC)
             editContactVC.presenter = editContactPresenter
         }
     }
@@ -80,32 +86,41 @@ class DetailViewController: ViewController {
 
 extension DetailViewController: DetailPresenterDelegate {
     func displayContactDetails(_ details: Contact) {
-        avatarImage.sd_setImage(with: URL(string: details.avatar), placeholderImage: Images.avatarPlaceholder.equivalentImage)
+        avatarImage.sd_setImage(with: URL(string: details.avatar),
+                                placeholderImage: Images.avatarPlaceholder.equivalentImage)
         userNameLabel.text = details.fullName
         let favoriteBtnImage = details.isFavorite ? Images.isFavouriteDetail : Images.isNotFavouriteDetail
-        favoriteButton.setImage(favoriteBtnImage.equivalentImage, for: .normal)
+        favoriteButton.setImage(favoriteBtnImage.equivalentImage,
+                                for: .normal)
         //try and check for more details
-        guard let detail = details.details else {
+        guard
+            let email = details.email,
+            let phoneNumber = details.phoneNumber
+        else {
             return
         }
-        emailLabel.text = detail.email
-        mobileNumberLabel.text = detail.phoneNumber
+        
+        emailLabel.text = email
+        mobileNumberLabel.text = phoneNumber
     }
     
     func togglePageLoader(atPosition position: LoaderPosition, _ shouldShow: Bool) {
+        //disable any sort of action unti the activity completes
+        view.isUserInteractionEnabled = !shouldShow
+        editNavigationItem?.isEnabled = !shouldShow
         shouldShow ? showPageLoader(atPosition: position) : hidePageLoader(atPosition: position)
     }
     
     func displayError(_ error: Error) {
-        print(error.localizedDescription)
+        showAlert(ofType: .failure, andMessage: error.localizedDescription)
     }
     
     func displayinfo(_ message: String) {
-        
+        showAlert(ofType: .info, andMessage: message)
     }
     
     func displaySuccess(_ message: String) {
-        
+        showAlert(ofType: .success, andMessage: message)
     }
 }
 

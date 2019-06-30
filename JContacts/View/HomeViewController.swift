@@ -42,6 +42,10 @@ class HomeViewController: ViewController {
 }
 
 extension HomeViewController: HomePresenterDelegate {
+    func reloadRow(atIndexPath indexPath: IndexPath) {
+        tableView.reloadRows(at: [indexPath], with: .automatic)
+    }
+    
     func displayDetails(forContact contact: Contact) {
         performSegue(withIdentifier: ViewControllerSegue.showContactDetail.rawValue, sender: self)
     }
@@ -83,7 +87,8 @@ extension HomeViewController: UITableViewDataSource {
             fatalError(Strings.FAILED_CELL_DESTRUCTURE("ContactItemCell"))
         }
         
-        cell.contact = presenter.contact(inSection: indexPath.section, andRow: indexPath.row)
+        cell.contact = presenter.contact(inSection: indexPath.section,
+                                         andRow: indexPath.row)
         return cell
     }
 }

@@ -9,7 +9,7 @@
 import Foundation
 
 struct HomeViewModel {
-    let sections: [HomeSectionModel]
+    var sections: [HomeSectionModel]
     
     init(contacts: [Contact]) {
         var tempSections: [HomeSectionModel] = []
@@ -24,6 +24,24 @@ struct HomeViewModel {
             }
         }
         self.sections = tempSections
+    }
+    
+    public func find(_ contact: Contact) -> (section: Int, row: Int)? {
+        let firstChracter = String(contact.firstName.prefix(1))
+        let sectionIndex = sections.firstIndex(where: {
+            $0.sectionTitle.caseInsensitiveCompare(firstChracter) == ComparisonResult.orderedSame
+        })
+        
+        guard sectionIndex != nil else { return nil }
+        
+        let sectionRows = sections[sectionIndex!].sectionChildren
+        let rowIndex = sectionRows.firstIndex(where: {
+            $0.id == contact.id
+        })
+        
+        guard rowIndex != nil else { return nil }
+        
+        return (section: sectionIndex!, row: rowIndex!)
     }
     
 }

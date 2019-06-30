@@ -8,20 +8,30 @@
 
 import Foundation
 
-enum EditContactPresenterError: Error {
-    case invalidFirstName, invalidLastName, invalidEmail, invalidPhone
-}
-
 class EditContactPresenter {
     private weak var delegate: EditPresenterDelegate?
     private(set) var contact: Contact?
     
-    init(contact: Contact?, delegate: EditPresenterDelegate) {
+    init(contact: Contact?, delegate: EditPresenterDelegate?) {
         self.contact = contact
         self.delegate = delegate
     }
     
-    private func validateFormInputs() throws {
+    private func dispatchRelevantNotification(usingPayload payload: Contact) {
+        var notification: Notification.Name!
+        
+        if(contact == nil) {
+            //we are in creation mode
+            notification = .didCreateContact
+        }else {
+            //we are in editing mode
+            notification = .didUpdateContact
+        }
+        
+        NotificationCenter.default.post(name: notification, object: payload)
+    }
+    
+    public func validateFormInputs() throws {
         guard
             let editedFirstName = delegate?.editedFirstName,
             editedFirstName.trimmingCharacters(in: .whitespacesAndNewlines).count > 0
@@ -41,7 +51,6 @@ class EditContactPresenter {
             System.isValidEmail(editedEmail)
             else{
                 throw EditContactPresenterError.invalidEmail
-                
         }
         
         guard
@@ -52,7 +61,7 @@ class EditContactPresenter {
         }
     }
     
-    private var areNewInputsDifferent: Bool {
+    public var areNewInputsDifferent: Bool {
         //Caution : Unsafe variable, use only if validateFormInputs is guaranteed not to throw anything
         if contact == nil {
             return true
@@ -60,11 +69,9 @@ class EditContactPresenter {
         return (
             delegate!.editedFirstName! != contact!.firstName ||
             delegate!.editedLastName! != contact!.lastName ||
-            contact?.details == nil ||
-            delegate!.editedEmail != contact!.details!.email ||
-            delegate!.editedPhoneNumber != contact!.details!.phoneNumber
+            delegate!.editedEmail != contact!.email! ||
+            delegate!.editedPhoneNumber != contact!.phoneNumber!
         )
-        
     }
     
     public func getContact() {
@@ -81,6 +88,7 @@ class EditContactPresenter {
             try validateFormInputs()
         }catch (let error) {
             delegate?.displayError(error)
+            return
         }
         
         
@@ -89,6 +97,7 @@ class EditContactPresenter {
         
         if areNewInputsDifferent || delegate!.pickedImageData != nil {
             //we have something to save to the server
+            delegate?.toggleSaveButton(false)
             let updater = ContactUpdater(imageData: delegate?.pickedImageData,
                                          firstName: delegate!.editedFirstName!,
                                          lastName: delegate!.editedLastName!,
@@ -101,18 +110,24 @@ class EditContactPresenter {
             
             updater.updateContact { [weak self] (result) in
                 guard let `self` = self else { return }
+                self.delegate?.togglePageLoader(atPosition: .page, false)
+                self.delegate?.toggleSaveButton(true)
                 switch result {
-                case .success(_ ):
+                case .success(let newContact ):
                     self.delegate?.displaySuccess("Contact was Updated")
+                    
+                    //dispatch notification to trigger updates in previous views
+                    self.dispatchRelevantNotification(usingPayload: newContact)
+                    
                 case .failure(let error):
                     self.delegate?.displayError(error)
                 }
             }
             
+        }else{
+            //no changes worth saving have been made, notify delegate to dismiss
+            delegate?.dismissSelf()
         }
     }
-    
-    
-    
     
 }

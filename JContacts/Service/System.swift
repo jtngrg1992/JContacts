@@ -15,16 +15,31 @@ enum SystemError: Error {
     case invalidEmail
 }
 
+extension SystemError: LocalizedError {
+    var errorDescription: String? {
+        switch self {
+        case .invalidPhoneNumber:
+            return Strings.INVALID_PHONE
+        case .urlConstructionFailed:
+            return Strings.FAILED_URL_CONSTRUCTION
+        case .unableToOpenURL:
+            return Strings.FAILED_URL_CONSTRUCTION
+        case .invalidEmail:
+            return Strings.INVALID_EMAIL
+        }
+    }
+}
+
 class System {
     private static var application = UIApplication.shared
     
     private class func obtainPhoneNumber(from contact: Contact) throws -> String {
-        guard let details = contact.details,
-            details.phoneNumber.trimmingCharacters(in: .whitespacesAndNewlines).count >= 10
+        guard let phoneNumber = contact.phoneNumber,
+            phoneNumber.trimmingCharacters(in: .whitespacesAndNewlines).count >= 10
             else{
                 throw SystemError.invalidPhoneNumber
         }
-        return details.phoneNumber
+        return phoneNumber
     }
     
     public class func isValidEmail(_ email: String) -> Bool {
@@ -36,12 +51,12 @@ class System {
     
     private class func obtainEmail(from contact: Contact) throws -> String {
         guard
-            let details = contact.details,
-            isValidEmail(details.email)
+            let email = contact.email,
+            isValidEmail(email)
             else{
                 throw SystemError.invalidEmail
         }
-        return details.email
+        return email
     }
     
     class func sayHello(to contact: Contact) throws {

@@ -56,11 +56,11 @@ enum Router {
                 parameterDictionary["profile_pic"] = contact.avatar
             }
             
-            if let phoneNumber = contact.details?.phoneNumber {
+            if let phoneNumber = contact.phoneNumber {
                 parameterDictionary["phone_number"] = phoneNumber
             }
             
-            if let email = contact.details?.email {
+            if let email = contact.email {
                 parameterDictionary["email"] = email
             }
             

@@ -9,13 +9,13 @@
 import Foundation
 
 struct Contact: Codable {
-    let id: Int
-    let firstName: String
-    let lastName: String
-    let avatar: String
-    let isFavorite: Bool
-    let detailURL: String
-    var details: ContactDetail?
+    var id: Int
+    var firstName: String
+    var lastName: String
+    var avatar: String
+    var isFavorite: Bool
+    var email: String?
+    var phoneNumber: String?
     
     public var fullName: String {
         return "\(firstName.capitalized) \(lastName.capitalized)"
@@ -28,6 +28,7 @@ struct Contact: Codable {
         case lastName = "last_name"
         case avatar = "profile_pic"
         case isFavorite = "favorite"
-        case detailURL = "url"
+        case email = "email"
+        case phoneNumber = "phone_number"
     }
 }

@@ -16,10 +16,16 @@ class EditContactViewController: ViewController {
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var mobileField: UITextField!
     @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var doneNavigationItem: UIBarButtonItem!
     
     public var presenter: EditContactPresenter!
     
-    private var pickedImage: UIImage?
+    private var pickedImage: UIImage? {
+        didSet{
+            avatarImageView.image = pickedImage
+        }
+    }
+    
     private let imagePicker = UIImagePickerController()
     
     var pickedImageData: Data?
@@ -36,6 +42,7 @@ class EditContactViewController: ViewController {
     }
     
     @IBAction func cameraButtonTapped(_ sender: Any) {
+        view.endEditing(true)
         presenter.processCameraTap()
     }
     
@@ -44,6 +51,7 @@ class EditContactViewController: ViewController {
     }
     
     @IBAction func doneTapped(_ sender: Any) {
+        view.endEditing(true)
         saveInformation()
     }
     
@@ -88,6 +96,8 @@ class EditContactViewController: ViewController {
         editedLastName = lastNameField.text ?? ""
         editedPhoneNumber = mobileField.text ?? ""
         editedEmail = emailField.text ?? ""
+        
+        presenter.saveContactInformation()
     }
     
 }
@@ -95,7 +105,8 @@ class EditContactViewController: ViewController {
 //MARK :- Conformance necessary for operation of image picker
 extension EditContactViewController: UIImagePickerControllerDelegate,
 UINavigationControllerDelegate {
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+    func imagePickerController(_ picker: UIImagePickerController,
+                               didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         defer {
             dismiss(animated: true)
         }
@@ -115,7 +126,14 @@ UINavigationControllerDelegate {
 
 //MARK :- Presenter delegates
 extension EditContactViewController: EditPresenterDelegate {
+    func toggleSaveButton(_ shouldEnable: Bool) {
+        doneNavigationItem.isEnabled = shouldEnable
+    }
     
+    
+    func dismissSelf() {
+        dismiss(animated: true)
+    }
     
     func displayContact() {
         guard let contact = presenter.contact else {
@@ -124,29 +142,39 @@ extension EditContactViewController: EditPresenterDelegate {
         
         firstNameField.text = contact.firstName
         lastNameField.text = contact.lastName
-        avatarImageView.sd_setImage(with: URL(string: contact.avatar), placeholderImage: Images.avatarPlaceholder.equivalentImage)
+        avatarImageView.sd_setImage(with: URL(string: contact.avatar),
+                                    placeholderImage: Images.avatarPlaceholder.equivalentImage)
         
         //now the details
-        guard let details = contact.details else {
+        guard
+            let email = contact.email,
+            let phoneNumber = contact.phoneNumber
+        else {
             return
         }
-        emailField.text = details.email
-        mobileField.text = details.phoneNumber
+        emailField.text = email
+        mobileField.text = phoneNumber
     }
     
     func displayPictureOptions() {
-        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        let cameraAction = UIAlertAction(title: Strings.EDIT_PIC_CAMERA_OPTION, style: .default) { [weak self ]_ in
+        let actionSheet = UIAlertController(title: nil, 
+                                            message: nil,
+                                            preferredStyle: .actionSheet)
+        let cameraAction = UIAlertAction(title: Strings.EDIT_PIC_CAMERA_OPTION,
+                                         style: .default) { [weak self ]_ in
             guard let `self` = self else { return }
             self.openCamera()
         }
         
-        let cameraRollAction = UIAlertAction(title: Strings.EDIT_PIC_CAMERA_ROLL_OPTION, style: .default) {[weak self] _ in
+        let cameraRollAction = UIAlertAction(title: Strings.EDIT_PIC_CAMERA_ROLL_OPTION,
+                                             style: .default) {[weak self] _ in
             guard let `self` = self else { return }
             self.openCameraRoll()
         }
         
-        let cancelAction = UIAlertAction(title: Strings.EDIT_PIC_CANCEL_OPTION, style: .cancel, handler: nil)
+        let cancelAction = UIAlertAction(title: Strings.EDIT_PIC_CANCEL_OPTION,
+                                         style: .cancel,
+                                         handler: nil)
         
         [cameraAction, cameraRollAction, cancelAction].forEach {
             actionSheet.addAction($0)
@@ -155,19 +183,22 @@ extension EditContactViewController: EditPresenterDelegate {
     }
     
     func togglePageLoader(atPosition position: LoaderPosition, _ shouldShow: Bool) {
-        
+        shouldShow ? showPageLoader(atPosition: position) : hidePageLoader(atPosition: position)
     }
     
     func displayError(_ error: Error) {
-        
+        showAlert(ofType: .failure,
+                  andMessage: error.localizedDescription)
     }
     
     func displayinfo(_ message: String) {
-        
+        showAlert(ofType: .info,
+                  andMessage: message)
     }
     
     func displaySuccess(_ message: String) {
-        
+        showAlert(ofType: .success,
+                  andMessage: message)
     }
     
     
@@ -176,7 +207,9 @@ extension EditContactViewController: EditPresenterDelegate {
 //MARK:- Textfield Delegates
 extension EditContactViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        scrollView.setContentOffset(CGPoint(x: 0, y: textField.superview!.frame.origin.y + textField.frame.origin.y), animated: true)
+        scrollView.setContentOffset(CGPoint(x: 0,
+                                            y: textField.superview!.frame.origin.y + textField.frame.origin.y),
+                                    animated: true)
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {

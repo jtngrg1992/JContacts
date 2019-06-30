@@ -9,6 +9,11 @@
 import UIKit
 
 
+enum AlertType: String {
+    case failure = "Oops!"
+    case success = "Voila!"
+    case info = "FYI"
+}
 
 class ViewController: UIViewController {
     private var loaderMap: [LoaderPosition : LoadingView] = [:]
@@ -17,6 +22,12 @@ class ViewController: UIViewController {
         let l = LoadingView()
         l.color = Colors.PrimaryColor
         return l
+    }
+    
+    private func constructAlertBox(OfType type: AlertType, andMessage message: String) -> UIAlertController {
+        let alertController = UIAlertController(title: type.rawValue, message: message, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "Alright", style: .default, handler: nil))
+        return alertController
     }
     
     open func showPageLoader(atPosition position: LoaderPosition) {
@@ -72,5 +83,9 @@ class ViewController: UIViewController {
         }
     }
     
-    
+    open func showAlert(ofType type: AlertType, andMessage message: String) {
+        view.endEditing(true)
+        let alertBox = constructAlertBox(OfType: type, andMessage: message)
+        present(alertBox, animated: true)
+    }
 }

@@ -16,4 +16,6 @@ protocol EditPresenterDelegate: ViewPresenterDelegate {
     var editedPhoneNumber: String? { get set }
     func displayContact()
     func displayPictureOptions()
+    func dismissSelf()
+    func toggleSaveButton(_ shouldEnable: Bool)
 }

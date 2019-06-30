@@ -18,6 +18,9 @@ struct Strings {
     static let EDIT_PIC_CAMERA_OPTION = "Camera"
     static let EDIT_PIC_CAMERA_ROLL_OPTION = "Camera Roll"
     static let EDIT_PIC_CANCEL_OPTION = "Cancel"
+    static let FAILURE_ALERT_TITLE = "Oops!"
+    static let INFO_ALERT_TITLE = "FYI"
+    static let SUCCESS_ALERT_TITLE = "Voila!"
     static func UNKNOWN_STATUS_CODE(_ code: Int) -> String {
         return "Unknown status code: \(code)"
     }
@@ -25,5 +28,23 @@ struct Strings {
         return "Couldn't find a cell of type \(cellClass)"
     }
     
+    //Error Enums' Localized Descriptions
+    
+    //1. Network Errors
+    static let RESOURCE_NOT_FOUND = "The requested resource was not found"
+    static let VALIDATION_FALIED = "We couldn't validate your request"
+    static let INTERNAL_ERROR = "An internal server error was encountered"
+    static let NULL_DATA = "We could find the requested data"
+    
+    
+    //2. Edit Presenter Errors
+    static let INVALID_FIRSTNAME = "First name is invalid"
+    static let INVALID_LASTNAME = "Last name is invalid"
+    static let INVALID_PHONE = "Phone number is invalid"
+    static let INVALID_EMAIL = "Email address is invalid"
+    
+    //3. System Errors
+    static let FAILED_URL_CONSTRUCTION = "We couldn't open the requsted application"
+
 }
 

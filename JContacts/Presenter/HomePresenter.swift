@@ -22,6 +22,26 @@ class HomePresenter {
     
     init( delegate: HomePresenterDelegate) {
         self.delegate = delegate
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(contactUpdated),
+                                               name: .didUpdateContact,
+                                               object: nil)
+    }
+    
+    @objc func contactUpdated(_ notification: Notification) {
+        guard
+            let newContact = notification.object as? Contact,
+            let _ = viewModel,
+            let indexTupple = viewModel!.find(newContact)
+            else {
+                return
+        }
+        
+        viewModel?.sections[indexTupple.section].sectionChildren[indexTupple.row] = newContact
+        
+        //find out the index path or updated contact and instruct delegate to reload it
+        delegate?.reloadRow(atIndexPath: IndexPath(row: indexTupple.row,
+                                                   section: indexTupple.section))
     }
     
     public func fetchContacts() {

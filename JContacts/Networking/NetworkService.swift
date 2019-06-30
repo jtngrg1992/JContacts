@@ -8,10 +8,6 @@
 
 import Foundation
 
-enum NetworkError: Error {
-    case notFound, validationFailed, internalServerError, noData, other(String)
-}
-
 class NetworkService<T: Codable> {
     typealias completionBlock  = (Result<T, NetworkError>) -> ()
     class func request(router: Router, completion: @escaping completionBlock) {
@@ -27,6 +23,7 @@ class NetworkService<T: Codable> {
         
         var request = URLRequest(url: url)
         request.httpMethod = router.method
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         
         if let body = router.httpBody {
             do {

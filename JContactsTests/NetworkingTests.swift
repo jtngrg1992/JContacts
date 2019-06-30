@@ -39,12 +39,12 @@ class NetworkingTests: XCTestCase {
     }
 
     func testContactDetailFetching() {
-        let testContactID = 6415
+        let testContactID = 5705
         let router = Router.getContactDetail(testContactID)
         let detailExpectation = expectation(description: "Contact Details")
-        var details: ContactDetail?
+        var details: Contact?
         
-        NetworkService<ContactDetail>.request(router: router) { result in
+        NetworkService<Contact>.request(router: router) { result in
             switch result {
             case .success(let detail):
                 details = detail
@@ -56,6 +56,26 @@ class NetworkingTests: XCTestCase {
         waitForExpectations(timeout: 10) { (error) in
             XCTAssertNotNil(details)
         }
+    }
+    
+    func testImageUpload() {
+        let imageData = Images.avatarPlaceholder.equivalentImage!.jpegData(compressionQuality: 0.5)
+        let imagUploader = ImageUploader(data: imageData!)
+        var url: String?
+        let uploadExpectation = expectation(description: "Image Uploaded")
+        
+        imagUploader.beginUpload { (result) in
+            switch result {
+            case .success( let u ):
+                url = u
+            default: break
+            }
+            uploadExpectation.fulfill()
+        }
+        waitForExpectations(timeout: 10) { _ in
+            XCTAssertNotNil(url)
+        }
+        
     }
     
 

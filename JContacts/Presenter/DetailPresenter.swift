@@ -8,10 +8,6 @@
 
 import Foundation
 
-enum DetailPresenterError: Error {
-    case invalidPhoneNumber
-}
-
 class DetailPresenter {
     private(set) var contact: Contact
     private weak var delegate: DetailPresenterDelegate?
@@ -19,20 +15,38 @@ class DetailPresenter {
     init(contact: Contact, delegate: DetailPresenterDelegate) {
         self.contact = contact
         self.delegate = delegate
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(didRecieveContactUpdate),
+                                               name: .didUpdateContact, object: nil)
+    }
+    
+    @objc func didRecieveContactUpdate(_ notification: Notification) {
+        guard let newContact = notification.object as? Contact else {
+            return
+        }
+        
+        contact = newContact
+        delegate?.displayContactDetails(contact)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self,
+                                                  name: .didUpdateContact,
+                                                  object: nil)
     }
     
     public func fetchContactDetails() {
         //show basic details
-        //delegate?.displayContactDetails(contact)
         //hit server to get more details
         delegate?.togglePageLoader(atPosition: .bottom, true)
-        NetworkService<ContactDetail>.request(router: Router.getContactDetail(contact.id)) { [weak self] (result) in
+        NetworkService<Contact>.request(router: Router.getContactDetail(contact.id)) { [weak self] (result) in
             guard let `self` = self else { return }
             DispatchQueue.main.async {
                 self.delegate?.togglePageLoader(atPosition: .bottom, false)
                 switch (result) {
                 case .success(let detail):
-                    self.contact.details = detail
+                    self.contact = detail
                     self.delegate?.displayContactDetails(self.contact)
                 case .failure(let error):
                     self.delegate?.displayError(error)
@@ -62,6 +76,28 @@ class DetailPresenter {
             try System.sendEmail(to: contact)
         }catch (let error) {
             delegate?.displayError(error)
+        }
+    }
+    
+    public func toggleFavoriteStatus() {
+        contact.isFavorite = !contact.isFavorite
+        let router = Router.updateContact(contact)
+        delegate?.togglePageLoader(atPosition: .top, true)
+        NetworkService<Contact>.request(router: router) { [weak self] (result) in
+            DispatchQueue.main.async {
+                guard let `self` = self else {
+                    return
+                }
+                
+                self.delegate?.togglePageLoader(atPosition: .top, false)
+                switch result {
+                case .success(_ ) :
+                    self.delegate?.displayContactDetails(self.contact)
+                    NotificationCenter.default.post(name: .didUpdateContact, object: self.contact)
+                case .failure(let error):
+                    self.delegate?.displayError(error)
+                }
+            }
         }
     }
 }
