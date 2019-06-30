@@ -13,4 +13,5 @@ protocol HomePresenterDelegate: ViewPresenterDelegate {
     func displayDetails(forContact contact: Contact)
     func reloadRow(atIndexPath indexPath: IndexPath)
     func scroll(toRowAtIndexPath indexPath: IndexPath)
+    func reloadData()
 }

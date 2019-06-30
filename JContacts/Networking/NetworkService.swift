@@ -50,7 +50,7 @@ class NetworkService<T: Codable> {
             
             let statusCode = httpResponse.statusCode
             switch (statusCode) {
-            case 200:
+            case 200, 201:
                 guard let data = responseData else {
                     //null data encountered
                     completion(.failure(.noData))

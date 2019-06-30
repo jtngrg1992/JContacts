@@ -111,6 +111,16 @@ class EditContactViewController: ViewController {
         
         presenter.saveContactInformation()
     }
+    
+    private func alertTapHandler() {
+        guard presenter.contact == nil else {
+            return
+        }
+        //user is creating a new contact, dismiss the modal screen after the alert is tapped
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            self.dismiss(animated: true)
+        }
+    }
 
 }
 
@@ -210,7 +220,10 @@ extension EditContactViewController: EditPresenterDelegate {
     
     func displaySuccess(_ message: String) {
         showAlert(ofType: .success,
-                  andMessage: message)
+                  andMessage: message,
+                  handler: { [weak self] in
+                    self?.alertTapHandler()
+        })
     }
     
     

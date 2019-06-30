@@ -46,7 +46,7 @@ class ContactUpdater {
     }
     
     private func uploadContact (contact: Contact, _ completion:  @escaping (Result<Contact, Error>) -> ()) {
-        let router = self.existingContactID != nil ? Router.updateContact(contact) : Router.getContacts
+        let router = self.existingContactID != nil ? Router.updateContact(contact) : Router.createContact(contact)
         NetworkService<Contact>.request(router: router, completion: { (result) in
             DispatchQueue.main.async {
                 switch(result) {

@@ -47,17 +47,17 @@ class EditContactPresenter {
         }
         
         guard
-            let editedEmail = delegate?.editedEmail,
-            System.isValidEmail(editedEmail)
-            else{
-                throw EditContactPresenterError.invalidEmail
-        }
-        
-        guard
             let editedPhone = delegate?.editedPhoneNumber,
             editedPhone.trimmingCharacters(in: .whitespacesAndNewlines).count >= 10
             else{
                 throw EditContactPresenterError.invalidPhone
+        }
+        
+        guard
+            let editedEmail = delegate?.editedEmail,
+            System.isValidEmail(editedEmail)
+            else{
+                throw EditContactPresenterError.invalidEmail
         }
     }
     
@@ -114,7 +114,11 @@ class EditContactPresenter {
                 self.delegate?.toggleSaveButton(true)
                 switch result {
                 case .success(let newContact ):
-                    self.delegate?.displaySuccess("Contact was Updated")
+                    var successMessage = Strings.CONTACT_CREATED
+                    if self.contact != nil {
+                        successMessage = Strings.CONTACT_UPDATED
+                    }
+                    self.delegate?.displaySuccess(successMessage)
                     
                     //dispatch notification to trigger updates in previous views
                     self.dispatchRelevantNotification(usingPayload: newContact)

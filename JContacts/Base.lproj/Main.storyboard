@@ -100,20 +100,27 @@
                     <navigationItem key="navigationItem" title="Contact" id="QDJ-9H-Z2e">
                         <barButtonItem key="leftBarButtonItem" title="Groups" id="mr0-mi-6PS">
                             <color key="tintColor" red="0.43610316514968872" green="0.89230906963348389" blue="0.76453119516372681" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="groupsTapped:" destination="BYZ-38-t0r" id="Niv-Sh-IvG"/>
+                            </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Groups" image="plus" id="J3D-Kz-o33">
                             <color key="tintColor" red="0.43610316510000002" green="0.8923090696" blue="0.76453119520000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="addContactTapped:" destination="BYZ-38-t0r" id="x5H-kj-Wlh"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="initialsContainer" destination="uXe-ia-Jy2" id="UKu-4J-ZPv"/>
                         <outlet property="tableView" destination="88s-3b-olf" id="XYn-1I-NWw"/>
                         <segue destination="EHy-jf-foN" kind="show" identifier="showContactDetail" id="l2m-J2-jQd"/>
+                        <segue destination="0nd-Nn-nDh" kind="presentation" identifier="showAddContact" id="4cU-t9-YvM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1047.8260869565217" y="118.52678571428571"/>
+            <point key="canvasLocation" x="868" y="-555"/>
         </scene>
         <!--Detail View Controller-->
         <scene sceneID="I3F-8E-FV9">
@@ -376,12 +383,12 @@
                         <outlet property="mobileNumberLabel" destination="Y0L-Er-Mvc" id="JSl-XV-7Xe"/>
                         <outlet property="scrollView" destination="rNH-SK-QH2" id="mS5-dp-LwZ"/>
                         <outlet property="userNameLabel" destination="7MA-od-56G" id="ubf-w4-kCd"/>
-                        <segue destination="0nd-Nn-nDh" kind="presentation" identifier="showEdit" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="SkI-u1-v1L"/>
+                        <segue destination="0nd-Nn-nDh" kind="presentation" identifier="showEdit" modalPresentationStyle="fullScreen" id="SkI-u1-v1L"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x2z-pX-Wu1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1828.985507246377" y="117.85714285714285"/>
+            <point key="canvasLocation" x="868" y="192"/>
         </scene>
         <!--Edit Contact View Controller-->
         <scene sceneID="82v-0k-WBd">
@@ -400,7 +407,7 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TEx-At-y93">
                                                 <rect key="frame" x="142" y="30" width="130" height="130"/>
                                                 <subviews>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mvu-Yc-wC7">
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder_photo" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mvu-Yc-wC7">
                                                         <rect key="frame" x="2" y="2" width="126" height="126"/>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
@@ -427,7 +434,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cAo-eQ-0JU">
-                                                <rect key="frame" x="231" y="119" width="16" height="22"/>
+                                                <rect key="frame" x="231" y="119" width="41" height="41"/>
                                                 <state key="normal" image="camera_button"/>
                                                 <connections>
                                                     <action selector="cameraButtonTapped:" destination="btT-wB-c0U" eventType="touchUpInside" id="1oA-pv-Q4V"/>
@@ -681,7 +688,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I53-gY-Dab" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3647.826086956522" y="113.83928571428571"/>
+            <point key="canvasLocation" x="3059" y="-179"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="SzZ-ll-6qb">
@@ -721,7 +728,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I9Q-ye-xvg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2737.68115942029" y="113.83928571428571"/>
+            <point key="canvasLocation" x="2294" y="-179"/>
         </scene>
     </scenes>
     <resources>
@@ -731,6 +738,10 @@
         <image name="favourite_button" width="44" height="44"/>
         <image name="home_favourite" width="19" height="18"/>
         <image name="message_button" width="44" height="44"/>
+        <image name="placeholder_photo" width="126" height="126"/>
         <image name="plus" width="24" height="24"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="4cU-t9-YvM"/>
+    </inferredMetricsTieBreakers>
 </document>

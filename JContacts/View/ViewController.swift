@@ -24,9 +24,11 @@ class ViewController: UIViewController {
         return l
     }
     
-    private func constructAlertBox(OfType type: AlertType, andMessage message: String) -> UIAlertController {
+    private func constructAlertBox(OfType type: AlertType, andMessage message: String, handler: (() -> ())?) -> UIAlertController {
         let alertController = UIAlertController(title: type.rawValue, message: message, preferredStyle: .alert)
-        alertController.addAction(UIAlertAction(title: "Alright", style: .default, handler: nil))
+        alertController.addAction(UIAlertAction(title: "Alright", style: .default) { _ in
+            handler?()
+        })
         return alertController
     }
     
@@ -83,9 +85,13 @@ class ViewController: UIViewController {
         }
     }
     
-    open func showAlert(ofType type: AlertType, andMessage message: String) {
+    open func showAlert(ofType type: AlertType,
+                        andMessage message: String,
+                        handler: (() -> ())? = nil) {
         view.endEditing(true)
-        let alertBox = constructAlertBox(OfType: type, andMessage: message)
+        let alertBox = constructAlertBox(OfType: type,
+                                         andMessage: message,
+                                         handler: handler)
         present(alertBox, animated: true)
     }
 }

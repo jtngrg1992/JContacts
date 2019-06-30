@@ -26,6 +26,18 @@ class HomePresenter {
                                                selector: #selector(contactUpdated),
                                                name: .didUpdateContact,
                                                object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(contactCreated),
+                                               name: .didCreateContact, object: nil)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self,
+                                                  name: .didUpdateContact,
+                                                  object: nil)
+        NotificationCenter.default.removeObserver(self,
+                                                  name: .didCreateContact,
+                                                  object: nil)
     }
     
     @objc func contactUpdated(_ notification: Notification) {
@@ -42,6 +54,16 @@ class HomePresenter {
         //find out the index path or updated contact and instruct delegate to reload it
         delegate?.reloadRow(atIndexPath: IndexPath(row: indexTupple.row,
                                                    section: indexTupple.section))
+    }
+    
+    @objc func contactCreated(_ notification: Notification) {
+        guard
+            let newContact = notification.object as? Contact
+        else {
+            return
+        }
+        viewModel?.insert(newContact)
+        delegate?.reloadData()
     }
     
     public func fetchContacts() {
@@ -62,7 +84,6 @@ class HomePresenter {
                     self.delegate?.displayError(error)
                 }
             }
-            
         }
     }
     

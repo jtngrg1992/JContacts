@@ -13,6 +13,7 @@ enum Router {
     case getContacts
     case getContactDetail(Int)
     case updateContact(Contact)
+    case createContact(Contact)
     
     var scheme: String {
         return "https"
@@ -24,7 +25,7 @@ enum Router {
     
     var path: String {
         switch self {
-        case .getContacts:
+        case .getContacts, .createContact(_):
             return "/contacts.json"
         case .getContactDetail(let contactID):
             return "/contacts/\(contactID).json"
@@ -35,7 +36,10 @@ enum Router {
     
     var parameters: [URLQueryItem] {
         switch self {
-        case .getContacts, .getContactDetail(_ ), .updateContact(_):
+        case .getContacts,
+             .getContactDetail(_ ),
+             .updateContact(_),
+             .createContact(_):
             return []
         }
     }
@@ -44,7 +48,7 @@ enum Router {
         switch self {
         case .getContacts, .getContactDetail(_ ):
             return nil
-        case .updateContact(let contact):
+        case .updateContact(let contact), .createContact(let contact):
             var parameterDictionary: [String:Any] = [
                 "first_name" : contact.firstName,
                 "last_name" : contact.lastName,
@@ -74,6 +78,8 @@ enum Router {
             return "GET"
         case .updateContact(_):
             return "PUT"
+        case .createContact(_):
+            return "POST"
         }
     }
 }

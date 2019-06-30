@@ -23,6 +23,14 @@ class HomeViewController: ViewController {
         configureInitialsView()
     }
     
+    @IBAction func addContactTapped(_ sender: Any) {
+        performSegue(withIdentifier: ViewControllerSegue.showAddContact.rawValue, sender: self)
+    }
+    
+    @IBAction func groupsTapped(_ sender: Any) {
+        
+    }
+    
     private func configureTableView() {
         tableView.estimatedRowHeight = 150
         tableView.rowHeight = UITableView.automaticDimension
@@ -42,11 +50,24 @@ class HomeViewController: ViewController {
         case .showContactDetail:
             let detailVC = segue.destination as! DetailViewController
             detailVC.contact = presenter.selectedContact!
+        case .showAddContact:
+            guard
+                let navigation = segue.destination as? UINavigationController,
+                let addContactVC = navigation.viewControllers.first as? EditContactViewController
+                else {
+                    return
+            }
+            let presenter = EditContactPresenter(contact: nil, delegate: addContactVC)
+            addContactVC.presenter = presenter
         }
     }
 }
 
 extension HomeViewController: HomePresenterDelegate {
+    func reloadData() {
+        tableView.reloadData()
+    }
+    
     func scroll(toRowAtIndexPath indexPath: IndexPath) {
         tableView.scrollToRow(at: indexPath,
                               at: .top,
@@ -68,18 +89,19 @@ extension HomeViewController: HomePresenterDelegate {
     }
     
     func displayError(_ error: Error) {
-        
+        showAlert(ofType: .failure, andMessage: error.localizedDescription)
     }
     
     func displayinfo(_ message: String) {
-        
+        showAlert(ofType: .info, andMessage: message)
     }
     
     func displaySuccess(_ message: String) {
-        
+       showAlert(ofType: .success, andMessage: message)
     }
     
     func togglePageLoader(atPosition position: LoaderPosition, _ shouldShow: Bool) {
+        tableView.isHidden = shouldShow
         shouldShow ? showPageLoader(atPosition: position) : hidePageLoader(atPosition: position)
     }
     
@@ -126,6 +148,7 @@ extension HomeViewController: UITableViewDelegate {
 extension HomeViewController: SegueHandler {
     enum ViewControllerSegue: String {
         case showContactDetail
+        case showAddContact
     }
 }
 

@@ -51,6 +51,28 @@ struct HomeViewModel {
         return sectionIndex
     }
     
+    public mutating func insert(_ contact: Contact) {
+        let firstChracter = String(contact.firstName.prefix(1))
+        
+        if let existingSectionIndex = index(ofSectionStartingWith: firstChracter) {
+            //append this contact to existing section's children
+            var sectionChildren = sections[existingSectionIndex].sectionChildren
+            sectionChildren.append(contact)
+            //sort the children
+            sections[existingSectionIndex].sectionChildren = sectionChildren.sorted(by: {
+                $0.firstName.localizedCaseInsensitiveCompare($1.firstName) == .orderedAscending
+            })
+        }else {
+            //create a new section and add this contact as a child
+            sections.append(HomeSectionModel(sectionTitle: firstChracter,
+                                             sectionChildren: [contact]))
+            //sort the sections
+            sections = sections.sorted(by: {
+                $0.sectionTitle.localizedCaseInsensitiveCompare($1.sectionTitle) == .orderedAscending
+            })
+        }
+    }
+    
 }
 
 struct HomeSectionModel {
