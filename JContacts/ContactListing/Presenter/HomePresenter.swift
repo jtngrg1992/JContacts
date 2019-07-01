@@ -41,40 +41,30 @@ class HomePresenter {
     }
     
     @objc func contactUpdated(_ notification: Notification) {
-        guard
-            let newContact = notification.object as? Contact,
-            let _ = viewModel,
-            let indexTupple = viewModel!.find(newContact)
-            else {
-                return
-        }
-        
-        viewModel?.sections[indexTupple.section].sectionChildren[indexTupple.row] = newContact
-        
-        //find out the index path or updated contact and instruct delegate to reload it
-        delegate?.reloadRow(atIndexPath: IndexPath(row: indexTupple.row,
-                                                   section: indexTupple.section))
+        fetchContacts()
     }
     
     @objc func contactCreated(_ notification: Notification) {
         guard
             let newContact = notification.object as? Contact
-        else {
-            return
+            else {
+                return
         }
         viewModel?.insert(newContact)
         delegate?.reloadData()
     }
     
     public func fetchContacts() {
-        delegate?.togglePageLoader(atPosition: .page, true)
+        let loaderPosition: LoaderPosition = contactsList.count > 0 ? .top : .page
+        delegate?.togglePageLoader(atPosition: loaderPosition, true)
+        
         NetworkService<[Contact]>.request(router: Router.getContacts) { [weak self] (result) in
             guard let `self` = self else {
                 return
             }
             
             DispatchQueue.main.async {
-                self.delegate?.togglePageLoader(atPosition: .page, false)
+                self.delegate?.togglePageLoader(atPosition: loaderPosition, false)
                 switch result {
                 case .success (let contactList):
                     //sort the contact list according to first names
@@ -109,8 +99,8 @@ class HomePresenter {
             let `viewModel` = viewModel,
             viewModel.sections.indices.contains(sectionIndex),
             viewModel.sections[sectionIndex].sectionChildren.indices.contains(rowIndex)
-        else {
-            fatalError(Strings.INVALID_CONTACT_INDICES)
+            else {
+                fatalError(Strings.INVALID_CONTACT_INDICES)
         }
         return viewModel.sections[sectionIndex].sectionChildren[rowIndex]
     }
@@ -119,16 +109,16 @@ class HomePresenter {
         guard
             let `viewModel` = viewModel,
             viewModel.sections.indices.contains(index)
-        else{
-            fatalError(Strings.INVALID_CONTACT_INDICES)
+            else{
+                fatalError(Strings.INVALID_CONTACT_INDICES)
         }
         return viewModel.sections[index].sectionTitle
     }
     
     public func processRowSelection(atIndexPath indexPath: IndexPath) {
         /*
-            finds out the contact item that was clicked and notifies
-            delete to take appropriate action
+         finds out the contact item that was clicked and notifies
+         delete to take appropriate action
          */
         
         guard
@@ -146,15 +136,15 @@ class HomePresenter {
     
     public func processAlphabetTap(_ alphabet: String) {
         /*
-            1. find out the index of the section that starts with this alphabet.
-            2. Instruct delegate to scroll to the first row of that section.
+         1. find out the index of the section that starts with this alphabet.
+         2. Instruct delegate to scroll to the first row of that section.
          */
         
         guard
             let `viewModel` = viewModel,
             let sectionIndex = viewModel.index(ofSectionStartingWith: alphabet)
-        else {
-            return
+            else {
+                return
         }
         
         

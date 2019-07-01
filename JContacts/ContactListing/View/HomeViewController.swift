@@ -28,7 +28,7 @@ class HomeViewController: ViewController {
     }
     
     @IBAction func groupsTapped(_ sender: Any) {
-        
+        showAlert(ofType: .info, andMessage: "This feature was absent from the specs")
     }
     
     private func configureTableView() {
@@ -101,7 +101,7 @@ extension HomeViewController: HomePresenterDelegate {
     }
     
     func togglePageLoader(atPosition position: LoaderPosition, _ shouldShow: Bool) {
-        tableView.isHidden = shouldShow
+        tableView.isHidden = shouldShow && position == .page
         shouldShow ? showPageLoader(atPosition: position) : hidePageLoader(atPosition: position)
     }
     

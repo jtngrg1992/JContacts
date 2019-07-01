@@ -78,5 +78,31 @@ class NetworkingTests: XCTestCase {
         
     }
     
+    func testContactCreation() {
+        let sampleContact = Contact(id: 0,
+                                    firstName: "Jatin",
+                                    lastName: "Garg",
+                                    avatar: "",
+                                    isFavorite: false,
+                                    email: "jg@spark6.com",
+                                    phoneNumber: "+919999464303")
+        let router = Router.createContact(sampleContact)
+        var error: Error?
+        let creationExpection = expectation(description: "Contact Created")
+        
+        NetworkService<Contact>.request(router: router) { (result) in
+            switch(result) {
+            case .success(_):
+                break
+            case .failure(let e):
+                error = e
+            }
+            creationExpection.fulfill()
+        }
+        waitForExpectations(timeout: 10) { _ in
+            XCTAssertNil(error)
+        }
+    }
+    
 
 }

@@ -105,5 +105,4 @@ class PresenterTests: XCTestCase {
         let val = editPresenter.areNewInputsDifferent
         XCTAssertFalse(val)
     }
-    
 }

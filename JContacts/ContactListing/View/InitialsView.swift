@@ -78,13 +78,10 @@ class InitialsView: UIView {
         let tappedAlphabet = alphabets[alphabets.index(alphabets.startIndex, offsetBy: index)]
         delegate?.didSelect(aCharacter: tappedAlphabet)
         
-        //find out the relevant button and switch to new tint
-        initialLabels.forEach {
-            guard let title = $0.title(for: .normal) else { return }
-            $0.tintColor = title.lowercased() == String(tappedAlphabet.lowercased()) ? Colors.PrimaryColor : .gray
-        }
-        
-        
-        
+//        //find out the relevant button and switch to new tint
+//        initialLabels.forEach {
+//            guard let title = $0.title(for: .normal) else { return }
+//            $0.tintColor = title.lowercased() == String(tappedAlphabet.lowercased()) ? Colors.PrimaryColor : .gray
+//        }
     }
 }

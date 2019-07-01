@@ -157,10 +157,11 @@
 		13AA09E722C7507D005265E9 /* JContacts */ = {
 			isa = PBXGroup;
 			children = (
+				13AA0A7022C9D2F5005265E9 /* Types */,
+				13AA0A6F22C9D2CC005265E9 /* Edit Contact */,
+				13AA0A6B22C9D24F005265E9 /* Contact Detail */,
+				13AA0A6622C9D1C8005265E9 /* ContactListing */,
 				13AA0A4722C7E5DE005265E9 /* Service */,
-				13AA0A1222C75935005265E9 /* Model */,
-				13AA0A1F22C767B0005265E9 /* Presenter */,
-				13AA0A1C22C765C7005265E9 /* View */,
 				13AA0A1922C7606A005265E9 /* Extensions */,
 				13AA0A0D22C7548A005265E9 /* Utilities */,
 				13AA0A0822C75297005265E9 /* Networking */,
@@ -205,16 +206,6 @@
 			path = Utilities;
 			sourceTree = "<group>";
 		};
-		13AA0A1222C75935005265E9 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				13AA0A1322C75943005265E9 /* Contact.swift */,
-				13AA0A2922C778A7005265E9 /* HomeViewModel.swift */,
-				13AA0A3122C78C10005265E9 /* LoaderPosition.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
 		13AA0A1922C7606A005265E9 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -222,38 +213,6 @@
 				13AA0A6422C92BBC005265E9 /* Notification.swift */,
 			);
 			path = Extensions;
-			sourceTree = "<group>";
-		};
-		13AA0A1C22C765C7005265E9 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				13AA0A1D22C765DF005265E9 /* ContactItemCell.swift */,
-				13AA09EA22C7507D005265E9 /* HomeViewController.swift */,
-				13AA0A2D22C78450005265E9 /* ViewController.swift */,
-				13AA0A2F22C7848A005265E9 /* LoadingView.swift */,
-				13AA0A3322C78D44005265E9 /* InitialsView.swift */,
-				13AA0A3522C796E2005265E9 /* ContactListSectionHeader.swift */,
-				13AA0A3B22C7ABC7005265E9 /* DetailViewController.swift */,
-				13AA0A4122C7C49B005265E9 /* GradientView.swift */,
-				13AA0A4A22C7F4BA005265E9 /* EditContactViewController.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		13AA0A1F22C767B0005265E9 /* Presenter */ = {
-			isa = PBXGroup;
-			children = (
-				13AA0A2022C767CC005265E9 /* ViewPresenterDelegate.swift */,
-				13AA0A2222C772F7005265E9 /* HomePresenterDelegate.swift */,
-				13AA0A2522C773C8005265E9 /* HomePresenter.swift */,
-				13AA0A3922C7A3A5005265E9 /* DetailPresenter.swift */,
-				13AA0A3D22C7ABF2005265E9 /* DetailPresenterDelegate.swift */,
-				13AA0A4C22C804FE005265E9 /* EditContactPresenter.swift */,
-				13AA0A4E22C80550005265E9 /* EditPresenterDelegate.swift */,
-				13AA0A6022C920CF005265E9 /* EditContactPresenterError.swift */,
-				13AA0A6222C924CD005265E9 /* DetailPresenterError.swift */,
-			);
-			path = Presenter;
 			sourceTree = "<group>";
 		};
 		13AA0A4722C7E5DE005265E9 /* Service */ = {
@@ -264,6 +223,135 @@
 				13AA0A5622C8AB9E005265E9 /* ContactUpdater.swift */,
 			);
 			path = Service;
+			sourceTree = "<group>";
+		};
+		13AA0A6622C9D1C8005265E9 /* ContactListing */ = {
+			isa = PBXGroup;
+			children = (
+				13AA0A6A22C9D205005265E9 /* Protocols */,
+				13AA0A6922C9D1E1005265E9 /* Model */,
+				13AA0A6822C9D1DB005265E9 /* View */,
+				13AA0A6722C9D1D2005265E9 /* Presenter */,
+			);
+			path = ContactListing;
+			sourceTree = "<group>";
+		};
+		13AA0A6722C9D1D2005265E9 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				13AA0A2522C773C8005265E9 /* HomePresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		13AA0A6822C9D1DB005265E9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				13AA0A3322C78D44005265E9 /* InitialsView.swift */,
+				13AA0A2F22C7848A005265E9 /* LoadingView.swift */,
+				13AA0A3522C796E2005265E9 /* ContactListSectionHeader.swift */,
+				13AA0A1D22C765DF005265E9 /* ContactItemCell.swift */,
+				13AA0A2D22C78450005265E9 /* ViewController.swift */,
+				13AA09EA22C7507D005265E9 /* HomeViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		13AA0A6922C9D1E1005265E9 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				13AA0A1322C75943005265E9 /* Contact.swift */,
+				13AA0A2922C778A7005265E9 /* HomeViewModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		13AA0A6A22C9D205005265E9 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				13AA0A2022C767CC005265E9 /* ViewPresenterDelegate.swift */,
+				13AA0A2222C772F7005265E9 /* HomePresenterDelegate.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		13AA0A6B22C9D24F005265E9 /* Contact Detail */ = {
+			isa = PBXGroup;
+			children = (
+				13AA0A6E22C9D29E005265E9 /* Protocols */,
+				13AA0A6D22C9D276005265E9 /* View */,
+				13AA0A6C22C9D25F005265E9 /* Presenter */,
+			);
+			path = "Contact Detail";
+			sourceTree = "<group>";
+		};
+		13AA0A6C22C9D25F005265E9 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				13AA0A3922C7A3A5005265E9 /* DetailPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		13AA0A6D22C9D276005265E9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				13AA0A4122C7C49B005265E9 /* GradientView.swift */,
+				13AA0A3B22C7ABC7005265E9 /* DetailViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		13AA0A6E22C9D29E005265E9 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				13AA0A3D22C7ABF2005265E9 /* DetailPresenterDelegate.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		13AA0A6F22C9D2CC005265E9 /* Edit Contact */ = {
+			isa = PBXGroup;
+			children = (
+				13AA0A7322C9D344005265E9 /* Protocols */,
+				13AA0A7222C9D338005265E9 /* Presenter */,
+				13AA0A7122C9D32D005265E9 /* View */,
+			);
+			path = "Edit Contact";
+			sourceTree = "<group>";
+		};
+		13AA0A7022C9D2F5005265E9 /* Types */ = {
+			isa = PBXGroup;
+			children = (
+				13AA0A6222C924CD005265E9 /* DetailPresenterError.swift */,
+				13AA0A6022C920CF005265E9 /* EditContactPresenterError.swift */,
+				13AA0A3122C78C10005265E9 /* LoaderPosition.swift */,
+			);
+			path = Types;
+			sourceTree = "<group>";
+		};
+		13AA0A7122C9D32D005265E9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				13AA0A4A22C7F4BA005265E9 /* EditContactViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		13AA0A7222C9D338005265E9 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				13AA0A4C22C804FE005265E9 /* EditContactPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		13AA0A7322C9D344005265E9 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				13AA0A4E22C80550005265E9 /* EditPresenterDelegate.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 		6A9A153F0194967813BC857A /* Pods */ = {
