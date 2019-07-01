@@ -20,7 +20,7 @@ In order to build this project, you must meet the following criteria:
 
 ### Installing
 
-* Make sure that you can complie swift 5.
+* Make sure that you can compile swift 5.
 * Build and run.
 
 ## Testing(CMD+U)
@@ -37,4 +37,4 @@ Following test cases have been covered:
 
 ## Author
 
-* **Jatin Garg** - Mail me [here] (jtngrg1992@hotmail.com)
+* **Jatin Garg** - Mail me [here](jtngrg1992@hotmail.com)
