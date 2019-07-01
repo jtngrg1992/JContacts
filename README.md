@@ -1,6 +1,6 @@
 # JContacts
 
-A contact management app the mildly mimicks native contacts app in iOS.
+A contact management app that mildly mimicks native contacts app in iOS.
 
 ## Getting Started
 
